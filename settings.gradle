@@ -1,0 +1,2 @@
+rootProject.name = "MyJava_AS4.2"
+include ':app'
