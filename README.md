@@ -64,7 +64,3 @@ dependencies {
 - `androidx.ink` 为 `1.1.0-alpha`，API 可能变动。
 - `DrawPadState` 为 `@MainThread`，勿跨线程调用。
 - 擦除 / 恢复的端到端验证在 `androidTest`（需设备）。
-
-## 许可
-
-未声明开源许可证。
