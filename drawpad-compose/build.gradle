@@ -1,0 +1,62 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+}
+
+android {
+    namespace 'com.louisgeek.drawpad'
+    compileSdk 35
+
+    // AGP 8.7.3 的 lint 引擎与 Kotlin 2.2.20 不兼容：NullSafeMutableLiveData、RememberInComposition、
+    // FrequentlyChangingValue 三个检测器在分析期均抛 IncompatibleClassChangeError 使 lint 任务崩溃，
+    // 故一并关闭；升级 AGP 后应移除。
+    lint {
+        disable 'NullSafeMutableLiveData', 'RememberInComposition', 'FrequentlyChangingValue'
+    }
+
+    defaultConfig {
+        minSdk 24
+        consumerProguardFiles 'consumer-rules.pro'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+    api(libs.androidx.core.ktx)
+    api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.ui)
+    api(libs.androidx.compose.ui.graphics)
+    api(libs.androidx.activity.compose)
+    api(libs.androidx.compose.material3)
+    api(libs.androidx.ink.authoring.compose)
+    api(libs.androidx.ink.brush)
+    api(libs.androidx.ink.brush.compose)
+    api(libs.androidx.ink.geometry)
+    api(libs.androidx.ink.geometry.compose)
+    api(libs.androidx.ink.rendering)
+    api(libs.androidx.ink.storage)
+    api(libs.androidx.ink.strokes)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.json)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+}

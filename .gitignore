@@ -1,15 +1,14 @@
+# IDE / tooling
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
+.idea/
+.gradle/
+
+# Build outputs (every module's build dir)
+build/
 /captures
 .externalNativeBuild
 .cxx
+
+# Local config / OS
 local.properties
+.DS_Store
